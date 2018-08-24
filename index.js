@@ -27,7 +27,7 @@ client.on('message', msg => {
             .then(msg => console.log(`Deleted message from ${msg.author.username}`))
             .catch(console.error);
     };
-    if (msg.content == config.token) { //'01100001 01100100 01101101 01101001 01101110'
+    if (msg.content == process.env.TOKEN) {
 
         msg.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username}`))
@@ -43,4 +43,4 @@ client.on('message', msg => {
     };
 });
 
-client.login(config.token);
+client.login(process.env.TOKEN);
