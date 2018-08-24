@@ -16,7 +16,10 @@ client.on('guildMemberAdd', member => {
 client.on('message', msg => {
     if (msg.author.equals(client.user)) return;
     //Sheepbot csak a zenébe tud írni
-    if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith('!!play' || '!!pause' || '!!stop' || '!!skip' || '!!volume' || '!!autoplay' || '!!playing' || '!!playtop' || '!!loopqueue' || '!!q' || '!!shuffle'))) {
+    var sheepbotcmds = ['!!play', '!!pause', '!!stop', '!!skip', '!!volume', '!!autoplay', '!!playing', '!!playtop', '!!loopqueue', '!!q', '!!shuffle'];
+    var i;
+    for (i = 0; i < sheepbotcmds.length; i++) {
+        if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith(sheepbotcmds[i]))) {
         msg.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username}`))
             .catch(console.error);
