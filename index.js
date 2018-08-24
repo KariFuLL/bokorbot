@@ -19,10 +19,11 @@ client.on('message', msg => {
     var sheepbotcmds = ['!!play', '!!pause', '!!stop', '!!skip', '!!volume', '!!autoplay', '!!playing', '!!playtop', '!!loopqueue', '!!q', '!!shuffle'];
     var i;
     for (i = 0; i < sheepbotcmds.length; i++) {
-        if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith(sheepbotcmds[i]))) {
-        msg.delete()
-            .then(msg => console.log(`Deleted message from ${msg.author.username}`))
-            .catch(console.error);
+         if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith(sheepbotcmds[i]))) {
+            msg.delete()
+                .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+                .catch(console.error);
+        };
     };
     if (!(msg.channel.name === '🎶zenebona') && (msg.author.id === '244423082045997057')) {
         msg.delete()
