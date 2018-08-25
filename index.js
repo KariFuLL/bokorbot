@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require('./config.json');
 
 const PREFIX = '!!';
 
@@ -161,8 +160,6 @@ client.on('message', msg => {
         };
     };
     team_random();
-
-
 });
 
 client.login(process.env.TOKEN);
