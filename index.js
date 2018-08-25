@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const config = require('./config.json');
 
 const PREFIX = '!!';
 
@@ -15,8 +16,40 @@ client.on('guildMemberAdd', member => {
 
     let RoleName = 'Sheepbot';
 
+});
 
-    member.addRole(memberRole)
+//Welcome message
+
+client.on('guildCreate', guild => {
+    var defaultChannel = "";
+    guild.channels.forEach((channel) => {
+        if (channel.type == "text" && defaultChannel == "") {
+            if (channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
+                defaultChannel = channel;
+            }
+        }
+    })
+
+    defaultChannel.send(`HELLÓÓÓÓÓÓÓÓ, itt van a Susnyás Bot`, {
+        embed: {
+            title: 'Susnyás Bot',
+            color: 0x2471a3,
+            description: "",
+            fields: [{
+                    name: 'Sheepbot és Csipkés Zoltán tiltás',
+                    value: 'Sheepbot és Csipkés Zoltán parancsok ezentúl csak a 🎶zene szobába írhatók.'
+                },
+                {
+                    name: 'Random Team generator',
+                    value: 'Random teamet generál.\n További infóért !!rt'
+                }
+            ],
+
+            footer: {
+                text: 'Susnyás Botot megírta és fejlesztette: Bokor#7728.'
+            }
+        }
+    });
 });
 
 client.on('message', msg => {
@@ -24,16 +57,19 @@ client.on('message', msg => {
 
     var args = msg.content.substring(PREFIX.length).split(" ");
     //Sheepbot csak a zenébe tud írni
-    var sheepbotcmds = ['!!play', '!!pause', '!!stop', '!!skip', '!!volume', '!!autoplay', '!!playing', '!!playtop', '!!loopqueue', '!!q', '!!shuffle'];
+    var musiccmds = ['!!play', '!!pause', '!!stop', '!!skip', '!!volume', '!!autoplay', '!!playing', '!!playtop', '!!loopqueue', '!!q', '!!shuffle', '!play', '!disconnect', '!np',
+        '!aliases', '!skip', '!seek', '!soundcloud', '!remove', '!loopqueue', '!search', '!stats', '!loop', '!donate', '!shard', '!join', '!lyrics', '!info', '!resume', '!settings',
+        '!move', '!forward', '!skipto', '!clear', '!replay', '!clean', '!pause', '!removedupes', '!volume', '!rewind', '!playtop', '!playskip', '!invite', '!shuffle', '!queue', '!stop', 'leave',
+    ];
     var i;
-    for (i = 0; i < sheepbotcmds.length; i++) {
-        if (!(msg.channel.name === '🎶zenebona') && (msg.content.startsWith(sheepbotcmds[i]))) {
+    for (i = 0; i < musiccmds.length; i++) {
+        if (!(msg.channel.id === '482962737425809411') && (msg.content.startsWith(musiccmds[i]))) {
             msg.delete()
                 .then(msg => console.log(`Deleted message from ${msg.author.username}`))
                 .catch(console.error);
         };
     }
-    if (!(msg.channel.name === '🎶zenebona') && (msg.author.id === '244423082045997057')) {
+    if ((msg.author.id === '244423082045997057' || msg.author.id === '235088799074484224') && !(msg.channel.id === '482962737425809411')) {
         msg.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username}`))
             .catch(console.error);
@@ -52,8 +88,7 @@ client.on('message', msg => {
             msg.member.addRole(role);
         });
 
-
-
+        //Random Team
     }
 
     function rt_help() {
