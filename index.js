@@ -62,7 +62,7 @@ client.on('message', msg => {
     ];
     var i;
     for (i = 0; i < musiccmds.length; i++) {
-        if ((msg.channel.id === '354716801839661059') && (msg.content.startsWith(musiccmds[i]))) {
+        if (!(msg.channel.id === '471603648141590550' || msg.channel.id === '483053444098424857') && (msg.content.startsWith(musiccmds[i]))) {
             msg.delete()
                 .then(msg => console.log(`Deleted message from ${msg.author.username}`))
                 .catch(console.error);
