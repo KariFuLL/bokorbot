@@ -62,13 +62,13 @@ client.on('message', msg => {
     ];
     var i;
     for (i = 0; i < musiccmds.length; i++) {
-        if ((msg.channel.id === '354716801839661059') && (msg.content.startsWith(musiccmds[i]))) {
+        if ((msg.channel.id === '354716801839661059' || msg.channel.id === '436885043034718229') && (msg.content.startsWith(musiccmds[i]))) {
             msg.delete()
                 .then(msg => console.log(`Deleted message from ${msg.author.username}`))
                 .catch(console.error);
         };
     }
-    if ((msg.author.id === '244423082045997057' || msg.author.id === '235088799074484224') && (msg.channel.id === '354716801839661059')) {
+    if ((msg.author.id === '244423082045997057' || msg.author.id === '235088799074484224') && (msg.channel.id === '354716801839661059' || msg.channel.id === '436885043034718229')) {
         msg.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username}`))
             .catch(console.error);
