@@ -92,7 +92,7 @@ client.on('message', msg => {
 
     function rt_help() {
         var embed = new Discord.RichEmbed()
-            .addField("Random Team", "!randomteam_upload <nevek szóközzel elválasztva>\n//rövidítés: rt_u | pl.: rt_u Matyi Sanyi Laci Mami\n!rantomteam_generate\n//rövidítés: rt_g")
+            .addField("Random Team", "!!randomteam_upload <nevek szóközzel elválasztva>\n//rövidítés: rt_u | pl.: rt_u Matyi Sanyi Laci Mami\n!!rantomteam_generate\n//rövidítés: rt_g")
             .setColor("#daace5")
             .setThumbnail(msg.author.avatarURL)
             .setFooter("Készítette: Szente")
